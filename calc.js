@@ -15,13 +15,64 @@
  *
  * @param  {String} buttonValue   The value of the button that was clicked on, for example "6" or "+"
  */
+
+
 function handleButtonClick(buttonValue) {
+  var buttonValue = buttonValue;
+  var currentNum = "";
+  // var operators = "x", "-", "/", "+";
 
-    // TODO: WRITE SOME OF YOUR CODE HERE
+  if (buttonValue == ".") {
+    console.log("This is a period.");
 
+  } else if (buttonValue == "=") {
+    console.log("This is an equals sign.");
+
+  } else if (isNaN(buttonValue)) {
+
+    var operator = buttonValue;
+
+    if (operator == "+") {
+      var num1 = 2;
+      var num2 = 5;
+      var answer = num1 + num2;
+      console.log(answer);
+    } else if (operator == "-") {
+      var num1 = 2;
+      var num2 = 5;
+      var answer = num1 - num2;
+      console.log(answer);
+    } else if (operator == "x") {
+      var num1 = 2;
+      var num2 = 5;
+      var answer = num1 * num2;
+      console.log(answer);
+    } else if (operator == "/") {
+      var num1 = 2;
+      var num2 = 5;
+      var answer = num1 / num2;
+      console.log(answer);
+    }
+
+
+    console.log(buttonValue + "Not a number");
+
+  } else {
+    console.log(buttonValue + "Is a number");
+
+  }
+  console.log(currentNum + " the currentNum");
 }
 
 
+
+// if (isNan(buttonValue)) {
+//   var operator = "operator";
+//   console.log(operator);
+// } else {
+//   var num1 = "num1";
+//   console.log(num1);
+// }
 
 /** **************************************************************
  * These are our tests. If any of them fail you will see a message
