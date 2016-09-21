@@ -18,9 +18,9 @@
 
 
 function handleButtonClick(buttonValue) {
-  var buttonValue = buttonValue;
-  var currentNum = "";
-  // var operators = "x", "-", "/", "+";
+
+   updateDisplay(buttonValue);
+
 
   if (buttonValue == ".") {
     console.log("This is a period.");
@@ -36,6 +36,8 @@ function handleButtonClick(buttonValue) {
       var num1 = 2;
       var num2 = 5;
       var answer = num1 + num2;
+      updateDisplay(answer);
+
       console.log(answer);
     } else if (operator == "-") {
       var num1 = 2;
@@ -54,14 +56,10 @@ function handleButtonClick(buttonValue) {
       console.log(answer);
     }
 
-
-    console.log(buttonValue + "Not a number");
-
   } else {
     console.log(buttonValue + "Is a number");
 
   }
-  console.log(currentNum + " the currentNum");
 }
 
 
