@@ -25,16 +25,16 @@ function multiply(firstValue, secondValue) {
 function operationFromValue(value) {
     switch (value) {
         case "+":
-            return add;
+            return add();
             break;
         case "-":
-            return subtract;
+            return subtract();
             break;
         case "/":
-            return divide;
+            return divide();
             break;
         case "x":
-            return multiply;
+            return multiply();
             break;
     }
 }
@@ -54,7 +54,13 @@ function handleButtonClick(buttonValue) {
         runningTotal = 0;
         buffer = "";
         updateDisplay(buffer);
-    } else if (buttonValue === "+"){
+    } else if (operators.includes(buttonValue) && lastOp.length == 1) {
+        var operation = operationFromValue(buttonValue)
+
+        operation(runningTotal, buffer);
+
+
+      } else if (buttonValue === "+") {
         runningTotal = add(buffer, runningTotal);
         buffer = "";
         updateDisplay(runningTotal);
@@ -68,9 +74,7 @@ function handleButtonClick(buttonValue) {
     }
 }
 
-// if (operators.includes(buttonValue) && lastOp.length == 1)
 
-    // var operation = operationFromValue(buttonValue)
 
 // if (isNan(buttonValue)) {
 //   var operator = "operator";
