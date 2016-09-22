@@ -1,9 +1,7 @@
 // TODO: DEFINE ANY VARIABLES HERE
 var buffer = "";
 var runningTotal = 0;
-var operators = ["+", "-", "/", "x"];
-var lastOp = "";
-
+var operator;
 // TODO: DEFINE YOUR FUNCTIONS HERE
 
 function add(firstValue, secondValue) {
@@ -22,24 +20,6 @@ function multiply(firstValue, secondValue) {
     return Number(firstValue, 10) * Number(secondValue, 10);
 }
 
-function operationFromValue(value) {
-    switch (value) {
-        case "+":
-            return add();
-            break;
-        case "-":
-            return subtract();
-            break;
-        case "/":
-            return divide();
-            break;
-        case "x":
-            return multiply();
-            break;
-    }
-}
-
-
 /**
  * 		EDIT ME!
  *
@@ -50,29 +30,58 @@ function operationFromValue(value) {
  */
 
 function handleButtonClick(buttonValue) {
-    if (buttonValue === "clear") {
-        runningTotal = 0;
-        buffer = "";
-        updateDisplay(buffer);
-    } else if (operators.includes(buttonValue) && lastOp.length == 1) {
-        var operation = operationFromValue(buttonValue)
-
-        operation(runningTotal, buffer);
-
-
-      } else if (buttonValue === "+") {
-        runningTotal = add(buffer, runningTotal);
-        buffer = "";
-        updateDisplay(runningTotal);
-    } else if (buttonValue === "=") {
-        runningTotal = add(buffer, runningTotal);
-        buffer = "";
-        updateDisplay(runningTotal);
-    } else {
-        buffer += buttonValue;
-        updateDisplay(buffer);
-    }
+  if (buttonValue === "clear") {
+    runningTotal = 0;
+    buffer = "";
+    updateDisplay(buffer);
+  } else if (buttonValue === "x") {
+    runningTotal = add(buffer, runningTotal);
+    operator = 1;
+    buffer = "";
+    updateDisplay(runningTotal);
+  } else if (buttonValue === "/") {
+    runningTotal = add(buffer, runningTotal);
+    operator = 2;
+    buffer = "";
+    updateDisplay(runningTotal);
+  } else if (buttonValue === "+") {
+    runningTotal = add(buffer, runningTotal);
+    operator = 3;
+    buffer = "";
+    updateDisplay(runningTotal);
+  } else if (buttonValue === "-") {
+    runningTotal = add(runningTotal, buffer);
+    operator = 4;
+    buffer = "";
+    updateDisplay(runningTotal);
+  } else if (buttonValue === "=" && operator == 1) {
+    runningTotal = runningTotal * buffer;
+    buffer = "";
+    updateDisplay(runningTotal);
+  } else if (buttonValue === "=" && operator == 2) {
+    runningTotal = runningTotal / buffer;
+    buffer = "";
+    updateDisplay(runningTotal);
+  } else if (buttonValue === "=" && operator == 3) {
+    runningTotal = add(buffer, runningTotal);
+    buffer = "";
+    updateDisplay(runningTotal);
+  } else if (buttonValue === "=" && operator == 4) {
+    runningTotal = subtract(buffer, runningTotal);
+    buffer = "";
+    updateDisplay(runningTotal);
+  } else {
+    buffer += buttonValue;
+    updateDisplay(buffer);
+  }
 }
+
+
+// } else if (operators.includes(buttonValue)) {
+//     var operation = operationfromValue(buttonValue);
+//
+//     buffer = "";
+//     updateDisplay(runningTotal);
 
 
 
