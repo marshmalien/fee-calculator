@@ -1,9 +1,25 @@
 
 // TODO: DEFINE ANY VARIABLES HERE
-
-
+var buffer = "";
+var runningTotal = 0;
 
 // TODO: DEFINE YOUR FUNCTIONS HERE
+
+function add(firstValue, secondValue) {
+  return Number(firstValue, 10) + Number(secondValue, 10);
+}
+
+function subtract(firstValue, secondValue) {
+  return Number(secondValue, 10) - Number(firstValue, 10);
+}
+
+function divide(firstValue, secondValue) {
+  return Number(firstValue, 10) / Number(secondValue, 10);
+}
+
+function multiply(firstValue, secondValue) {
+  return Number(firstValue, 10) * Number(secondValue, 10);
+}
 
 
 
@@ -15,10 +31,24 @@
  *
  * @param  {String} buttonValue   The value of the button that was clicked on, for example "6" or "+"
  */
+
 function handleButtonClick(buttonValue) {
-
-    // TODO: WRITE SOME OF YOUR CODE HERE
-
+  if (buttonValue === "clear") {
+    runningTotal = 0;
+    buffer = "";
+    updateDisplay(buffer);
+  } else if (buttonValue === "+") {
+    runningTotal = add(buffer, runningTotal)
+    buffer = "";
+    updateDisplay(runningTotal);
+  } else if (buttonValue === "=") {
+    runningTotal = add(buffer, runningTotal);
+    buffer = "";
+    updateDisplay(runningTotal);
+  } else {
+    buffer += buttonValue;
+    updateDisplay(buffer);
+  }
 }
 
 
