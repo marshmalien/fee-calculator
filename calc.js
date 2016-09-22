@@ -1,26 +1,43 @@
-
 // TODO: DEFINE ANY VARIABLES HERE
 var buffer = "";
 var runningTotal = 0;
+var operators = ["+", "-", "/", "x"];
+var lastOp = "";
 
 // TODO: DEFINE YOUR FUNCTIONS HERE
 
 function add(firstValue, secondValue) {
-  return Number(firstValue, 10) + Number(secondValue, 10);
+    return Number(firstValue, 10) + Number(secondValue, 10);
 }
 
 function subtract(firstValue, secondValue) {
-  return Number(secondValue, 10) - Number(firstValue, 10);
+    return Number(secondValue, 10) - Number(firstValue, 10);
 }
 
 function divide(firstValue, secondValue) {
-  return Number(firstValue, 10) / Number(secondValue, 10);
+    return Number(firstValue, 10) / Number(secondValue, 10);
 }
 
 function multiply(firstValue, secondValue) {
-  return Number(firstValue, 10) * Number(secondValue, 10);
+    return Number(firstValue, 10) * Number(secondValue, 10);
 }
 
+function operationFromValue(value) {
+    switch (value) {
+        case "+":
+            return add;
+            break;
+        case "-":
+            return subtract;
+            break;
+        case "/":
+            return divide;
+            break;
+        case "x":
+            return multiply;
+            break;
+    }
+}
 
 
 /**
@@ -33,25 +50,27 @@ function multiply(firstValue, secondValue) {
  */
 
 function handleButtonClick(buttonValue) {
-  if (buttonValue === "clear") {
-    runningTotal = 0;
-    buffer = "";
-    updateDisplay(buffer);
-  } else if (buttonValue === "+") {
-    runningTotal = add(buffer, runningTotal)
-    buffer = "";
-    updateDisplay(runningTotal);
-  } else if (buttonValue === "=") {
-    runningTotal = add(buffer, runningTotal);
-    buffer = "";
-    updateDisplay(runningTotal);
-  } else {
-    buffer += buttonValue;
-    updateDisplay(buffer);
-  }
+    if (buttonValue === "clear") {
+        runningTotal = 0;
+        buffer = "";
+        updateDisplay(buffer);
+    } else if (buttonValue === "+"){
+        runningTotal = add(buffer, runningTotal);
+        buffer = "";
+        updateDisplay(runningTotal);
+    } else if (buttonValue === "=") {
+        runningTotal = add(buffer, runningTotal);
+        buffer = "";
+        updateDisplay(runningTotal);
+    } else {
+        buffer += buttonValue;
+        updateDisplay(buffer);
+    }
 }
 
+// if (operators.includes(buttonValue) && lastOp.length == 1)
 
+    // var operation = operationFromValue(buttonValue)
 
 /** **************************************************************
  * These are our tests. If any of them fail you will see a message
@@ -97,6 +116,8 @@ document.querySelector('.run-tests').addEventListener('click', function() {
         console.assert(multiply(0, 13) === 0, 'multiplying 0 by 13 did not result in 0');
         console.assert(multiply('-2', 10) === -20, 'multiplying "-2" by 10 did not result in -20');
 
+
+
         // Button click handler
         handleButtonClick('1');
         console.assert(testOutput.innerHTML === '1', testOutput.innerHTML, 'pressing `1` did not result in "1" in the display');
@@ -137,7 +158,7 @@ document.querySelector('.run-tests').addEventListener('click', function() {
         console.log('All tests have run. (If you see no errors, they all passed!)');
         updateDisplay('');
 
-    } catch(e) {
+    } catch (e) {
         console.error('There was a syntax error during the test run:', e);
     }
 });
@@ -157,6 +178,7 @@ document.querySelector('.run-tests').addEventListener('click', function() {
 });
 
 var display = document.querySelector('.display figure');
+
 function updateDisplay(text) {
     display.innerText = text;
 }
